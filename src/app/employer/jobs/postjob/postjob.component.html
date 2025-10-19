@@ -1,0 +1,41 @@
+<div class="container py-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Post a New Vacancy</h3>
+      <small>Fill in the details below to advertise a job</small>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="vacancyForm" (ngSubmit)="submitVacancy()" class="p-4 bg-light border rounded">
+
+        <div class="mb-4 border-bottom pb-3">
+          <h5>Job Details</h5>
+
+          <input formControlName="jobTitle" class="form-control mb-2" placeholder="Job Title *" />
+          <textarea formControlName="jobDescription" class="form-control mb-2" rows="3" placeholder="Job Description"></textarea>
+
+          <div class="row mb-2">
+            <div class="col">
+              <label>Date Posted</label>
+              <input type="date" formControlName="datePosted" class="form-control" />
+            </div>
+            <div class="col">
+              <label>End Date</label>
+              <input type="date" formControlName="endDate" class="form-control" />
+            </div>
+          </div>
+
+          <input formControlName="location" class="form-control mb-2" placeholder="Location" />
+          <input formControlName="category" class="form-control mb-2" placeholder="Category (e.g. IT, Finance)" />
+
+          <input type="number" formControlName="salary" class="form-control mb-2" placeholder="Salary (optional)" />
+        </div>
+
+        <div class="d-flex justify-content-end mt-3 gap-2">
+          <button type="button" class="btn btn-secondary" (click)="cancelForm()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Post Job</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

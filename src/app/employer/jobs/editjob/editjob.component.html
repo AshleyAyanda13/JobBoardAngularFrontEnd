@@ -1,0 +1,62 @@
+<!-- Backdrop -->
+<div class="modal-backdrop fade show" *ngIf="showDeleteMessage" style="z-index: 1040;"></div>
+
+<!-- Modal -->
+<div class="modal d-block fade show" *ngIf="showDeleteMessage" style="z-index: 1050;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Confirm Deletion</h5>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this job posting? This action cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="toggleDeleteModal(false)">Cancel</button>
+        <button class="btn btn-danger" (click)="DeleteJob()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container py-5" *ngIf="showEditForm">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Edit Vacancy</h3>
+      <small>Fill in the details below to advertise a job</small>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="editForm" (ngSubmit)="EditVacancy()" class="p-4 bg-light border rounded">
+
+        <div class="mb-4 border-bottom pb-3">
+          <h5>Job Details</h5>
+
+          <input formControlName="jobTitle" class="form-control mb-2" placeholder="Job Title *" />
+          <textarea formControlName="jobDescription" class="form-control mb-2" rows="3" placeholder="Job Description"></textarea>
+
+          <div class="row mb-2">
+            <div class="col">
+              <label>Date Posted</label>
+              <input type="date" formControlName="datePosted" class="form-control" />
+            </div>
+            <div class="col">
+              <label>End Date</label>
+              <input type="date" formControlName="endDate" class="form-control" />
+            </div>
+          </div>
+
+          <input formControlName="location" class="form-control mb-2" placeholder="Location" />
+          <input formControlName="category" class="form-control mb-2" placeholder="Category (e.g. IT, Finance)" />
+
+          <input type="number" formControlName="salary" class="form-control mb-2" placeholder="Salary (optional)" />
+        </div>
+
+        <div class="d-flex justify-content-end mt-3 gap-2">
+  <button type="button" class="btn btn-danger" (click)="deleteJob()">Delete</button>
+   <button type="button" class="btn btn-secondary" (click)="RemoveEditForm()">Cancel</button>
+   <button type="submit" class="btn btn-primary">Edit Job</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

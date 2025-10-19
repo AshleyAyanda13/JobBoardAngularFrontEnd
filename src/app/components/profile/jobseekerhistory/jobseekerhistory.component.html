@@ -1,0 +1,200 @@
+<div class="container py-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">{{this.jobseekerdetails.name }} {{this.jobseekerdetails.surname}} {{this.jobseekerdetails.username}}</h3>
+      <small>Junior Developer | Java, .NET, Angular</small>
+    </div>
+
+    <div class="card-body">
+
+      
+      <form [formGroup]="workForm" *ngIf="showWorkExperienceForm" (ngSubmit)="submitForm()" class="p-4 bg-light border rounded">
+        
+          <div  class="mb-4 border-bottom pb-3">
+            <h5> Add Experience</h5>
+
+            <input formControlName="position" class="form-control mb-2" placeholder="Job Title" />
+            <input formControlName="company" class="form-control mb-2" placeholder="Company Name" />
+
+            <div class="row mb-2">
+              <div class="col">
+                <label>Start Date</label>
+                <input type="date" formControlName="startDate" class="form-control" />
+              </div>
+              <div class="col">
+                <label>End Date</label>
+                <input type="date" formControlName="endDate" class="form-control" />
+              </div>
+            </div>
+
+            <div class="form-check mb-2">
+              <input type="checkbox" class="form-check-input" formControlName="currentlyWorking" />
+              <label class="form-check-label">I currently work here</label>
+            </div>
+
+            <textarea formControlName="description" class="form-control mb-2" rows="3" placeholder="Job Description"></textarea>
+          </div>
+      
+
+        <div class="d-flex justify-content-between mt-3">
+          <button type="button" class="btn btn-secondary" (click)="CancelWorkExperience()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit All</button>
+        </div>
+      </form>
+<form [formGroup]="EditWorkExpForm" *ngIf="showEditWorkExpForm" (ngSubmit)="editWorkExperience()" class="p-4 bg-light border rounded">
+        
+          <div  class="mb-4 border-bottom pb-3">
+            <h5>Edit Experience</h5>
+
+            <input formControlName="position" class="form-control mb-2" placeholder="Job Title" />
+            <input formControlName="company" class="form-control mb-2" placeholder="Company Name" />
+
+            <div class="row mb-2">
+              <div class="col">
+                <label>Start Date</label>
+                <input type="date" formControlName="startDate" class="form-control" />
+              </div>
+              <div class="col">
+                <label>End Date</label>
+                <input type="date" formControlName="endDate" class="form-control" />
+              </div>
+            </div>
+
+            <div class="form-check mb-2">
+              <input type="checkbox" class="form-check-input" formControlName="currentlyWorking" />
+              <label class="form-check-label">I currently work here</label>
+            </div>
+
+            <textarea formControlName="description" class="form-control mb-2" rows="3" placeholder="Job Description"></textarea>
+          </div>
+      
+
+        <div class="d-flex justify-content-between mt-3">
+          <button type="button" class="btn btn-secondary" (click)="RemoveWorkExperience()">Cancel</button>
+           <button type="button" class="btn btn-danger" (click)="DeleteExperience()">Delete</button>
+          <button type="submit" class="btn btn-primary">Update All</button>
+        </div>
+      </form>
+  
+      <h5 class="mt-5 mb-3">🎓 Work Experience</h5>
+      <button class="btn btn-success mb-2" (click)="addWorkExperience()">Add +</button>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of data">
+          <strong>{{ item.company }}</strong><br>
+          Position: {{ item.position }}<br>
+          Duration: {{ item.startDate }} – {{ item.endDate }}<br>
+          Job Description: {{ item.description }}
+          Job Description: {{ item.id }}
+          <button class="btn btn-sm btn-outline-primary mt-2" (click)="ShowEditWorkExpForm(item)">Edit</button>
+
+         
+        </li>
+      </ul>
+
+      <form [formGroup]="AddeducationForm" class="p-4 border rounded bg-light" *ngIf="showEducationForm" (ngSubmit)="SubmitEducationForm()">
+
+  <h4 class="mb-3"> Add Education</h4>
+
+  <p class="text-muted">Which parts of your education are most relevant?</p>
+
+  <div class="mb-3">
+    <label for="institution" class="form-label">Institution</label>
+    <input type="text" class="form-control" id="institution" formControlName="institution" placeholder="e.g. Eduvos">
+  </div>
+
+  <div class="mb-3">
+    <label for="major" class="form-label"> Field of Study</label>
+    <input type="text" class="form-control" id="major" formControlName="fieldOfStudy" placeholder="e.g. International Business or Media Design">
+  </div>
+
+  <div class="mb-3">
+    <label for="degree" class="form-label">Degree</label>
+    <select class="form-select" id="degree" formControlName="degree">
+      <option value="" disabled selected>Select your degree</option>
+      <option>Bachelors</option>
+      <option>Diploma</option>
+      <option>Honours</option>
+      <option>Masters</option>
+      <option>Doctorate</option>
+    </select>
+  </div>
+
+ 
+            <div class="row mb-2">
+              <div class="col">
+                <label>Start Date</label>
+                <input type="date" formControlName="startDate" class="form-control" />
+              </div>
+              <div class="col">
+                <label>End Date</label>
+                <input type="date" formControlName="endDate" class="form-control" />
+              </div>
+            </div>
+
+  <div class="mt-4 d-flex justify-content-end gap-2">
+    <button type="submit" class="btn btn-primary">Save</button>
+    
+   <button type="button" class="btn btn-secondary" (click)="RemoveeducationForm()">Cancel</button>
+  </div>
+</form>  
+
+
+      <form [formGroup]="EditEducationForm" class="p-4 border rounded bg-light" *ngIf="showEditEducationForm" (ngSubmit)="submitEditForm()">
+  <h4 class="mb-3"> Edit Education</h4>
+  <p class="text-muted">Which parts of your education are most relevant?</p>
+
+  <div class="mb-3">
+    <label for="institution" class="form-label">Institution</label>
+    <input type="text" class="form-control" id="institution" formControlName="institution" placeholder="e.g. Eduvos">
+  </div>
+
+    <div class="mb-3">
+    <label for="major" class="form-label"> Field of Study</label>
+    <input type="text" class="form-control" id="major" formControlName="fieldOfStudy" placeholder="e.g. International Business or Media Design">
+  </div>
+
+  <div class="mb-3">
+    <label for="degree" class="form-label">Degree</label>
+    <select class="form-select" id="degree" formControlName="degree">
+      <option value="" disabled selected>Select your degree</option>
+      <option>Bachelors</option>
+      <option>Diploma</option>
+      <option>Honours</option>
+      <option>Masters</option>
+      <option>Doctorate</option>
+    </select>
+  </div>
+ 
+ 
+            <div class="row mb-2">
+              <div class="col">
+                <label>Start Date</label>
+                <input type="date" formControlName="startDate" class="form-control" />
+              </div>
+              <div class="col">
+                <label>End Date</label>
+                <input type="date" formControlName="endDate" class="form-control" />
+              </div>
+            </div>
+
+  <div class="mt-4 d-flex justify-content-end gap-2">
+    <button type="submit" class="btn btn-primary">Save</button>
+     <button type="button" class="btn btn-danger" (click)="DeleteEducation()">Delete</button>
+   <button type="button" class="btn btn-secondary" (click)="RemoveEditeducationForm()">Cancel</button>
+  </div>
+</form>  
+      <h5 class="mt-5 mb-3">🎓 Education</h5>
+      <button class="btn btn-success mb-2" (click)="addEducation()">Add +</button>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of educationdata">
+          <strong>{{ item.degree }}</strong><br>
+          Institution: {{ item.institution }}<br>
+          Duration: {{ item.startDate }} – {{ item.endDate }}<br>
+          Field Of Study: {{ item.fieldOfStudy }}
+          <button class="btn btn-sm btn-outline-primary mt-2" (click)="editEducation(item)">Edit</button>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container mt-5" *ngIf="vacancyDetails">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-primary">Apply for: {{ vacancyDetails.jobTitle }}</h2>
+      <p class="text-muted">{{ vacancyDetails.location }} • R{{ vacancyDetails.salary | number:'1.0-2' }}</p>
+
+      <form (ngSubmit)="submitApplication()" [formGroup]="applicationForm" class="mt-4">
+        
+        
+
+       
+        <div class="mb-3">
+          <label for="coverletter" class="form-label">Cover Letter</label>
+          <textarea
+            id="coverletter"
+            class="form-control"
+            formControlName="coverletter"
+            rows="6"
+            placeholder="Write your cover letter here..."
+            required
+          ></textarea>
+        </div>
+
+     
+        <button type="submit" class="btn btn-success" [disabled]="applicationForm.invalid">
+          <i class="bi bi-send-fill me-2"></i>Submit Application
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5" *ngIf="!vacancyDetails">
+  <div class="alert alert-info">Loading vacancy details...</div>
+</div>

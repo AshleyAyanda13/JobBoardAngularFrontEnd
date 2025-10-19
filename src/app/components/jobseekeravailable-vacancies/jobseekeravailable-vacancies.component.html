@@ -1,0 +1,38 @@
+ 
+      <div class="container mt-4">
+    <h3 class="mb-4">Available Vacancies</h3>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+   
+    <div class="col" *ngFor="let vacancy of vacancies">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{vacancy.jobTitle}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Company A</h6>
+          <p class="card-text">
+            💰 Salary:  R{{vacancy.salary}}<br>
+        {{vacancy.jobDescription}}<br>
+             Posted On: {{vacancy.datePosted}}<br>
+             Location: {{vacancy.location}}
+              Category: {{vacancy.category}}
+                    Closing Date: {{vacancy.endDate}}
+
+          </p>
+            <button class="btn btn-sm btn-outline-primary mt-2" (click)="ApplyForJob(vacancy.id)">Apply</button>
+
+
+        </div>
+        <div class="card-footer text-muted">
+          Posted 2 days ago
+        </div>
+        
+      </div>
+    </div>
+
+    
+
+
+  </div>
+</div>
+
+

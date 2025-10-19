@@ -1,0 +1,32 @@
+ <h5 class="mt-5 mb-3">My Posted vacancies</h5>
+      <button class="btn btn-success mb-2" (click)="onAddJobClick()">Add +</button>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of postedJobs">
+          
+        Job Title: {{ item.jobTitle }}<br>
+              Job Description: {{ item.jobDescription }}<br>
+          End Date: {{ item.location }} – {{ item.endDate }}<br>
+          
+          Salary: {{ item.salary }}
+          Date Posted: {{ item.datePosted }}
+          Category: {{ item.category }}
+
+          <button class="btn btn-sm btn-outline-primary mt-2" (click)="editVacancy(item.id)">Edit</button>
+          <button class="btn btn-success mb-2" (click)="viewApplicants(item.id)">View Applicants</button>
+
+        </li>
+      </ul>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+

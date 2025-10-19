@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h4>Applicants for Job #{{ jobId }}</h4>
+
+  <div *ngIf="applicants.length > 0; else noApplicants">
+      
+    <div *ngFor="let applicant of applicants"  class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ applicant.applicantName }} {{ applicant.applicantSurname }}</h5>
+        <p class="card-text">
+          📧 Email: {{ applicant.applicantEmail }}<br>
+          📞 Phone: {{ applicant.applicantPhone }}<br>
+          
+          📅 Applied At: {{ applicant.appliedDate }}
+          <br>
+          CV Name: {{ applicant.resumeFileName }}
+
+           <br>
+          CV Type: {{ applicant.fileType }}
+<br>
+📝 Cover Letter: {{ applicant.coverletter || '—' }}<br>
+
+        </p>
+      
+        <button class="btn btn-outline-primary btn-sm" (click)="ViewResume(applicant.resumeId)">View Resume</button>
+        <button class="btn btn-outline-success btn-sm ms-2" (click)="DownloadCv(applicant.resumeId)">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noApplicants>
+    <div class="alert alert-info mt-3">
+      No applicants yet for this job.
+    </div>
+  </ng-template>
+
+  <button class="btn btn-secondary mt-4" (click)="goBack()">← Back to Posted Jobs</button>
+</div>

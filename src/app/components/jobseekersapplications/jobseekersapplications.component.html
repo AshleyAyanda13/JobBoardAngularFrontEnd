@@ -1,0 +1,29 @@
+ <h5 class="mt-5 mb-3">Vacancies that you have applied for</h5>
+       <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of data">
+          
+        Job Title: {{ item.jobTitle }}<br>
+              Job Description: {{ item.jobDescription }}<br>
+          End Date: {{ item.location }} – {{ item.endDate }}<br>
+          
+          Salary: {{ item.salary }}
+          Date Posted: {{ item.datePosted }}
+          Category: {{ item.category }}
+
+
+        </li>
+      </ul>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+

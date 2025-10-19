@@ -4,8 +4,12 @@ This project is actively being developed as part of a full-stack job board MVP. 
 
 Current focus:
 - Angular UI components for recruiter,admin and jobseeker workflows
-- Conditional rendering based on user role
--  And much more to come!
+- Conditional rendering based on user role (Implementation of authentication service)
+-  Route Guards
+-  Cover letter section when a jobseekers is viewing their applications
+-  Front End validation
+-  Potentially Sweet alerts
+  
 
 
 Feedback and collaboration welcome!

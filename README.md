@@ -1,3 +1,15 @@
+## 🚧 Work in Progress
+
+This project is actively being developed as part of a full-stack job board MVP. Features, structure, and styling are evolving — expect frequent updates and architectural refinements.
+
+Current focus:
+- Angular UI components for recruiter,admin and jobseeker workflows
+- Conditional rendering based on user role
+-  And much more to come!
+
+
+Feedback and collaboration welcome!
+
 # JobBoardFrontEnd
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.

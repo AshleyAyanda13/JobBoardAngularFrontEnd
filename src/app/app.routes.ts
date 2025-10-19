@@ -34,5 +34,5 @@ export const routes: Routes = [
 { path: 'searchresults', component: SearchresultsavailablevacanciesPageComponent },
    
    
-  { path: '**', redirectTo: '' } // 👈 Redirect unknown routes to login
+  { path: '**', redirectTo: '' } 
 ];

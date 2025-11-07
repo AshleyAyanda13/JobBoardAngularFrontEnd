@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../../services/apiservice.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ɵEmptyOutletComponent } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-searchresultsavailablevacancies',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ɵEmptyOutletComponent],
   templateUrl: './searchresultsavailablevacancies.component.html',
   styleUrl: './searchresultsavailablevacancies.component.css'
 })
 export class SearchresultsavailablevacanciesComponent  implements OnInit {
+   user$ = this.authService.user$;
 ApplyForJob(arg0: any) {
 
 
   this.router.navigate(['vacancydetailsforapplication', arg0]);
 }
-  constructor(private apiService:ApiserviceService,private route:ActivatedRoute,private router:Router) { }
+  constructor(private apiService:ApiserviceService,private route:ActivatedRoute,private router:Router, private authService:AuthService) { }
    
 
 vacancies:any;

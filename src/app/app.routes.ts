@@ -8,12 +8,13 @@ import { EditjobComponent } from './employer/jobs/editjob/editjob.component';
 import { ApplicantsComponent } from './employer/jobs/applicants/applicants.component';
 import { JobSeekerAvailableVacanciesPageComponent } from './pages/job-seeker-available-vacancies-page/job-seeker-available-vacancies-page.component';
 import { VacancyDetailsforapplicationComponent } from './components/vacancy-detailsforapplication/vacancy-detailsforapplication.component';
-import { ApplicantsPageComponent } from './pages/employer/applicants-page/applicants-page.component';
-import { ApplicationsPageComponent } from './pages/applications-page/applications-page.component';
+ import { ApplicationsPageComponent } from './pages/applications-page/applications-page.component';
 import { SearchresultsavailablevacanciesComponent } from './components/searchresultsavailablevacancies/searchresultsavailablevacancies.component';
 import { SearchresultsavailablevacanciesPageComponent } from './pages/searchresultsavailablevacancies-page/searchresultsavailablevacancies-page.component';
-
-
+import { EmployerLoginPageComponent } from './pages/employer/employer-login-page/employer-login-page.component';
+import { roleGuard } from './auth/role.guard';
+import { RegisterPageComponent } from './pages/employer/register-page/register-page.component';
+ 
 
 export const routes: Routes = [
 
@@ -31,8 +32,9 @@ export const routes: Routes = [
 
    { path: 'jobseekeravailablesearchedvacancies', component: SearchresultsavailablevacanciesComponent },
    
-{ path: 'searchresults', component: SearchresultsavailablevacanciesPageComponent },
-   
-   
-  { path: '**', redirectTo: '' } // 👈 Redirect unknown routes to login
+{ path: 'searchresults', component: SearchresultsavailablevacanciesPageComponent, canActivate: [roleGuard],data: { expectedRole: 'JOBSEEKER' } ,
+ },
+   { path: 'recruiterlogin', component: EmployerLoginPageComponent },
+      { path: 'recruiterregister', component: RegisterPageComponent },
+  { path: '**', redirectTo: '' } 
 ];

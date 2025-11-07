@@ -1,23 +1,22 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../../../services/apiservice.service';
-import { jwtDecode } from 'jwt-decode';
-import { CommonModule } from '@angular/common';
 
-interface JwtPayload {
-  sub: string;
-  userId: number;
-  iat: number;
-  exp: number;
-}
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
+import { ɵEmptyOutletComponent } from "@angular/router";
+
+ 
 
 @Component({
   selector: 'app-cv-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ɵEmptyOutletComponent],
   templateUrl: './cv-section.component.html',
   styleUrl: './cv-section.component.css'
 })
 export class CvSectionComponent implements OnInit {
+ user$ = this.authService.user$;
+  userId :number=0
 DeleteCV() {
 
 const confirmed = window.confirm('Are you sure you want to delete your CV?');
@@ -28,12 +27,8 @@ if (confirmed) {
 
 
 
-  const token = localStorage.getItem('jwtToken');
-   if (!token) {
-    alert('No token found. Please log in.');
-    return;
-  }
-    const decoded = jwtDecode<JwtPayload>(token);
+   
+    
  
   this.cvService.DeleteCv().subscribe({
       next: (response) => {
@@ -65,7 +60,7 @@ if (confirmed) {
   selectedFile: File | null = null;
   acceptedTypes = '.pdf,.doc,.docx,.odt,.jpg,.jpeg,.png,.xls,.xlsx,.ods,.txt,.rtf';
 data: any;
-  constructor(private cvService: ApiserviceService,private cdr: ChangeDetectorRef) {}
+  constructor(private cvService: ApiserviceService,private cdr: ChangeDetectorRef, private authService:AuthService) {}
 
   ngOnInit(): void {
     
@@ -74,25 +69,26 @@ this.getUserCVData();
 
   }
 getUserCVData() {
-  const token = localStorage.getItem('jwtToken');
-   if (!token) {
-    alert('No token found. Please log in.');
-    return;
-  }
-    const decoded = jwtDecode<JwtPayload>(token);
+  this.cvService.getLoggedInUserDetails().subscribe({
+    next: (userResponse) => {
+      this.userId = userResponse.userId;
 
-
-    this.cvService.getUsersCV(decoded.userId.toString()).subscribe({
-      next: (response) => {
-       this.data=response;    
-
-    
-       
-      },
-      error: (err) => {
-      }
-    });
-  }
+      
+      this.cvService.getUsersCV(this.userId.toString()).subscribe({
+        next: (response) => {
+          console.log("User Response:", response);
+          this.data = response;
+        },
+        error: (err) => {
+          console.error('Failed to load CV:', err);
+        }
+      });
+    },
+    error: (err) => {
+      console.error('Failed to get user info:', err);
+    }
+  });
+}
  
   downloadCv() {
   this.cvService.DownloadCv().subscribe({
@@ -136,17 +132,13 @@ getUserCVData() {
     return;
   }
 
-  const decoded = jwtDecode<JwtPayload>(token);
+  
   const now = Math.floor(Date.now() / 1000);
-  if (decoded.exp < now) {
-    alert('Session expired. Please log in again.');
-    return;
-  }
+  
 
   const formData = new FormData();
   formData.append('file', this.selectedFile);  
-  formData.append('userId', decoded.userId.toString());  
-
+  
   this.cvService.postUserCV(formData).subscribe(() => {
     alert('CV Uploaded successfully!');
     this.selectedFile = null;

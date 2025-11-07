@@ -1,4 +1,5 @@
-<div class="container mt-4">
+ <ng-component *ngIf="user$ | async as user">
+<div class="container mt-4" *ngIf="user.role === 'ADMIN' || user.role === 'JOBSEEKER'" >
   <div class="card shadow-sm">
     <div class="card-body">
       <h5 class="card-title">Your CV</h5>
@@ -34,3 +35,4 @@
     </div>
   </div>
 </div>
+</ng-component>

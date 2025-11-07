@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../../../services/apiservice.service';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ɵEmptyOutletComponent } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-postedjobs',
   standalone: true,
-  imports: [CommonModule  ],
+  imports: [CommonModule, ɵEmptyOutletComponent],
   templateUrl: './postedjobs.component.html',
   styleUrl: './postedjobs.component.css'
 })
 export class PostedjobsComponent implements OnInit{
+
+   user$ = this.authService.user$;
 viewApplicants(arg0: any) {
 
 this.router.navigate(['application', arg0]);
@@ -21,7 +24,7 @@ this.router.navigate(['application', arg0]);
    
 editVacancy(vacancy: any) {
 
-console.log('Editing vacancy:', vacancy);
+
 this.router.navigate(['editjob', vacancy]);
 
 
@@ -39,7 +42,7 @@ postedJobs: any;
 
    }
 
-  constructor( private apiService: ApiserviceService,private router:Router) { }
+  constructor( private apiService: ApiserviceService,private router:Router, private authService:AuthService) { }
   ngOnInit(): void {
     
 

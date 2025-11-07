@@ -1,5 +1,5 @@
- 
-      <div class="container mt-4">
+ <ng-container *ngIf="user$ | async as user">
+      <div class="container mt-4" *ngIf="user.role === 'ADMIN' || user.role === 'JOBSEEKER'">
     <h3 class="mb-4">Available Vacancies</h3>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -36,3 +36,4 @@
 </div>
 
 
+</ng-container>

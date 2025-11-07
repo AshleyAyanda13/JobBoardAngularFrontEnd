@@ -5,14 +5,19 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { ɵEmptyOutletComponent } from "@angular/router";
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-jobseekerhistory',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ɵEmptyOutletComponent],
   templateUrl: './jobseekerhistory.component.html',
   styleUrl: './jobseekerhistory.component.css'
 })
 export class JobseekerhistoryComponent implements OnInit{
+
+
+   user$ = this.authService.user$;
 submitEditForm() {
 const payload = this.EditEducationForm.value;
 this.cvService.EditEducation(this.editEducationId,payload).subscribe({
@@ -209,7 +214,7 @@ addWorkExperience() {
 
 data:any;
 educationdata:any;
-  constructor(private cvService: ApiserviceService, private fb: FormBuilder)  
+  constructor(private cvService: ApiserviceService, private fb: FormBuilder, private authService:AuthService)  
 { 
     this.workForm = this.fb.group({
       position: [''],

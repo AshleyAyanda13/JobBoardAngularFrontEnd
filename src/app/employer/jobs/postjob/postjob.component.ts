@@ -2,20 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ApiserviceService } from '../../../services/apiservice.service';
-import { Router } from '@angular/router';
+import { Router, ɵEmptyOutletComponent } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-postjob',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ɵEmptyOutletComponent],
   templateUrl: './postjob.component.html',
   styleUrl: './postjob.component.css'
 })
 export class PostjobComponent implements OnInit{
 
+ user$ = this.authService.user$;
 
 
-  constructor( private fb: FormBuilder,private apiService: ApiserviceService,private router:Router) { 
+  constructor( private fb: FormBuilder,private apiService: ApiserviceService,private router:Router, private authService:AuthService ) { 
 
 
 
@@ -51,6 +54,7 @@ submitVacancy() {
 this.apiService.postEmployersVacancy(this.vacancyForm.value).subscribe({
   next: (response) => {
    this.vacancyForm=response;
+   Swal.fire('Success!', 'You have successfully Added the vacancy .', 'success');
    this.router.navigate(['postedjobs']);
     
   } ,

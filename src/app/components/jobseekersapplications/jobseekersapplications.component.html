@@ -1,4 +1,5 @@
- <h5 class="mt-5 mb-3">Vacancies that you have applied for</h5>
+ <ng-component *ngIf="user$ | async as user">
+ <h5 class="mt-5 mb-3" *ngIf="user.role === 'ADMIN' || user.role === 'JOBSEEKER'" >Vacancies that you have applied for</h5>
        <ul class="list-group">
         <li class="list-group-item" *ngFor="let item of data">
           
@@ -13,6 +14,7 @@
 
         </li>
       </ul>
+    </ng-component>
       
 
 

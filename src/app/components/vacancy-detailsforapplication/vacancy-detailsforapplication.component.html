@@ -1,4 +1,5 @@
-<div class="container mt-5" *ngIf="vacancyDetails">
+<ng-component *ngIf="user$ | async as user">
+<div class="container mt-5" *ngIf="vacancyDetails || user.role === 'ADMIN' || user.role === 'JOBSEEKER'">
   <div class="card shadow-sm">
     <div class="card-body">
       <h2 class="card-title text-primary">Apply for: {{ vacancyDetails.jobTitle }}</h2>
@@ -33,3 +34,5 @@
 <div class="container mt-5" *ngIf="!vacancyDetails">
   <div class="alert alert-info">Loading vacancy details...</div>
 </div>
+
+</ng-component>

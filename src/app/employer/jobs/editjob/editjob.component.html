@@ -1,7 +1,9 @@
-<!-- Backdrop -->
+
+
+<ng-component *ngIf="user$ | async as user">
 <div class="modal-backdrop fade show" *ngIf="showDeleteMessage" style="z-index: 1040;"></div>
 
-<!-- Modal -->
+
 <div class="modal d-block fade show" *ngIf="showDeleteMessage" style="z-index: 1050;">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -18,7 +20,7 @@
     </div>
   </div>
 </div>
-<div class="container py-5" *ngIf="showEditForm">
+<div class="container py-5" *ngIf="showEditForm|| user.role === 'ADMIN' || user.role === 'RECRUITER'" >
   <div class="card shadow">
     <div class="card-header bg-primary text-white">
       <h3 class="mb-0">Edit Vacancy</h3>
@@ -60,3 +62,4 @@
     </div>
   </div>
 </div>
+</ng-component>

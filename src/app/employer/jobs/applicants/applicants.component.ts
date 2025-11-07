@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiserviceService } from '../../../services/apiservice.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router, ɵEmptyOutletComponent } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-applicants',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ɵEmptyOutletComponent],
   templateUrl: './applicants.component.html',
   styleUrl: './applicants.component.css'
 })
 export class ApplicantsComponent implements OnInit{
+
+ user$ = this.authService.user$;
+
+
 DownloadCv(resumeId: any) {
 this.apiservice.getApplicantsCV(resumeId).subscribe({
   next: (response) => {
@@ -45,7 +50,7 @@ ViewResume(resumeId: number): void {
 
 }
 
-constructor(private apiservice:ApiserviceService,private route: ActivatedRoute, private router:Router) { }
+constructor(private apiservice:ApiserviceService,private route: ActivatedRoute, private router:Router, private authService:AuthService) { }
 
   ngOnInit(): void {
   const jobId = this.route.snapshot.paramMap.get('id');

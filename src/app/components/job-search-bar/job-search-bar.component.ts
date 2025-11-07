@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiserviceService } from '../../services/apiservice.service';
-import { query } from '@angular/animations';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-job-search-bar',
@@ -15,8 +16,12 @@ import { query } from '@angular/animations';
 export class JobSearchBarComponent {
  searchTitle: string = '';
   searchLocation: string = '';
+  user$ = this.authService.user$;
 
-  constructor(private router: Router,private apiService:ApiserviceService) {}
+
+
+
+  constructor(private router: Router,private apiService:ApiserviceService,private authService: AuthService) {}
 
   onSearch(): void {
    

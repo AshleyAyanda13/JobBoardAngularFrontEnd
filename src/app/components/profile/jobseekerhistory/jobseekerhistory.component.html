@@ -1,4 +1,6 @@
-<div class="container py-5">
+
+<ng-component *ngIf="user$ | async as user">
+<div class="container py-5"*ngIf="user.role === 'ADMIN' || user.role === 'JOBSEEKER'" >
   <div class="card shadow">
     <div class="card-header bg-primary text-white">
       <h3 class="mb-0">{{this.jobseekerdetails.name }} {{this.jobseekerdetails.surname}} {{this.jobseekerdetails.username}}</h3>
@@ -198,3 +200,4 @@
     </div>
   </div>
 </div>
+</ng-component>

@@ -12,8 +12,10 @@ export class ApiserviceService {
   private apiUrlAddUserCV="http://localhost:8080/api/resumes/upload";
    private apiUrlgetUsersCV="http://localhost:8080/api/resumes/user/";
    private apiUrlDownloadUsersCV="http://localhost:8080/api/resumes/user/download";
+
+    private apiGetLoggedInUserInformationDetails="http://localhost:8080/api/auth/me";
  
-  private apiUrlGetInventoryById = 'https://localhost:6061/api/Inventory/';
+  
   private apipostWorkExp="http://localhost:8080/api/profile/AddMyWorkExperience";
     private apiEditWorkExp="http://localhost:8080/api/profile/updateUserWorkExperience/";
   private apiDeleteData="http://localhost:8080/api/resumes/delete";
@@ -53,7 +55,8 @@ private apiPostSearchQuery="http://localhost:8080/api/vacancy/SearchForVacancy";
   constructor(private http: HttpClient) { }
 
   postData(payload: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, payload);
+    return this.http.post<any>(this.apiUrl, payload,{ withCredentials: true }
+);
   }
 
   
@@ -62,7 +65,7 @@ private apiPostSearchQuery="http://localhost:8080/api/vacancy/SearchForVacancy";
   }
    DownloadCv(): Observable<Blob> {
   return this.http.get('http://localhost:8080/api/resumes/download', {
-    responseType: 'blob' 
+    responseType: 'blob' ,withCredentials: true
   });
 }
 
@@ -76,19 +79,22 @@ private apiPostSearchQuery="http://localhost:8080/api/vacancy/SearchForVacancy";
 
 
    getLoggedInUser(): Observable<any> {
-    return this.http.get<any>(this.apiGetLoggedInUserInformation);
+    return this.http.get<any>(this.apiGetLoggedInUserInformation,{ withCredentials: true });
+  }
+   getLoggedInUserDetails(): Observable<any> {
+    return this.http.get<any>(this.apiGetLoggedInUserInformationDetails,{ withCredentials: true });
   }
    getExperienceData(): Observable<any> {
-    return this.http.get<any>(this.apiGetExperience);
+    return this.http.get<any>(this.apiGetExperience,{ withCredentials: true });
   }
    getEducationData(): Observable<any> {
-    return this.http.get<any>(this.apiGetEducation);
+    return this.http.get<any>(this.apiGetEducation,{ withCredentials: true });
   }
   getAllVacancies(): Observable<any> {
-    return this.http.get<any>(this.apiGetAllVacancies);
+    return this.http.get<any>(this.apiGetAllVacancies,{ withCredentials: true });
   }
    getUsersCV(UserID:any): Observable<any> {
-    return this.http.get<any>(this.apiUrlgetUsersCV+UserID);
+    return this.http.get<any>(this.apiUrlgetUsersCV+UserID,{ withCredentials: true });
   }
 getApplicantsCV(vacancyId: any): Observable<Blob> {
   return this.http.get(`${this.apiGetApplicantsCV}${vacancyId}`, {
@@ -97,66 +103,61 @@ getApplicantsCV(vacancyId: any): Observable<Blob> {
 }
 
  getApplicantCvDetails(Id:any): Observable<any> {
-    return this.http.get<any>(this.apiGetApplicantsCVDetails+Id);
+    return this.http.get<any>(this.apiGetApplicantsCVDetails+Id,{ withCredentials: true });
   }
    getVacancyById(id:any): Observable<any> {
-    return this.http.get<any>(this.apiGetVacancyById+id);
+    return this.http.get<any>(this.apiGetVacancyById+id,{ withCredentials: true });
   }
    getVacancyApplications(id:any): Observable<any> {
-    return this.http.get<any>(this.apiGetMyVacancyApplications+id);
+    return this.http.get<any>(this.apiGetMyVacancyApplications+id,{ withCredentials: true });
   }
 postUserCV(payload: FormData): Observable<any> {
-  return this.http.post<any>(this.apiUrlAddUserCV, payload); // URL must match your backend @PostMapping
+  return this.http.post<any>(this.apiUrlAddUserCV, payload,{ withCredentials: true });  
 }
 postEmployersVacancy(payload: FormData): Observable<any> {
-  return this.http.post<any>(this.apiPostEmployersVacancy, payload); // URL must match your backend @PostMapping
-}
+  return this.http.post<any>(this.apiPostEmployersVacancy, payload,{ withCredentials: true });  
+ }
    
-  getInventoryDatawithId(Id:number): Observable<any> {
-    return this.http.get<any>(this.apiUrlGetInventoryById+Id);
-  }
+
    getJobSeekersApplications(UserId:number): Observable<any> {
-    return this.http.get<any>(this.apiGetJobSeekersApplications+UserId);
+    return this.http.get<any>(this.apiGetJobSeekersApplications+UserId,{ withCredentials: true });
   }
   postEditExp(Id:number,payload: any): Observable<any> {
-    return this.http.put<any>(this.apiEditWorkExp+Id, payload);
+    return this.http.put<any>(this.apiEditWorkExp+Id, payload,{ withCredentials: true });
   }
   postApplicationforvacancy(Id:number,payload: any): Observable<any> {
-    return this.http.post<any>(this.apiPostApplicationForVacancy+Id, payload);
+    return this.http.post<any>(this.apiPostApplicationForVacancy+Id, payload,{ withCredentials: true });
   }
   
   postWorkExperience(payload: any): Observable<any> {
-    return this.http.post<any>(this.apipostWorkExp, payload);
+    return this.http.post<any>(this.apipostWorkExp, payload,{ withCredentials: true });
   }
   postEducation(payload: any): Observable<any> {
-    return this.http.post<any>(this.apipostEducation, payload);
+    return this.http.post<any>(this.apipostEducation, payload,{ withCredentials: true });
   }
   EditEducation(Id:number,payload: any): Observable<any> {
-    return this.http.put<any>(this.apiEditEducation+Id, payload);
+    return this.http.put<any>(this.apiEditEducation+Id, payload,{ withCredentials: true });
   }
   EditPostedVacancy(Id:number,payload: any): Observable<any> {
-    return this.http.put<any>(this.apiUpdateJobDetails+Id, payload);
+    return this.http.put<any>(this.apiUpdateJobDetails+Id, payload,{ withCredentials: true });
   }
   
   DeleteEducation(Id:number): Observable<any> {
-    return this.http.delete<any>(this.apiDeleteEducation+Id);
+    return this.http.delete<any>(this.apiDeleteEducation+Id,{ withCredentials: true });
   }
    DeleteExp(Id:number): Observable<any> {
-    return this.http.delete<any>(this.apiDeleteExperience+Id);
+    return this.http.delete<any>(this.apiDeleteExperience+Id,{ withCredentials: true });
   }
   DeleteVacancy(Id:any): Observable<any> {
-    return this.http.delete<any>(this.apiDeleteVacancy+Id);
+    return this.http.delete<any>(this.apiDeleteVacancy+Id,{ withCredentials: true });
   }
 DeleteCv(): Observable<any> {
-    return this.http.delete<any>(this.apiDeleteData);
+    return this.http.delete<any>(this.apiDeleteData,{ withCredentials: true });
   }
 
   postSearchQuery(payload: any): Observable<any> {
-    return this.http.post<any>(this.apiPostSearchQuery, payload);
+    return this.http.post<any>(this.apiPostSearchQuery, payload,{ withCredentials: true });
   }
   }
-
-
-
 
 

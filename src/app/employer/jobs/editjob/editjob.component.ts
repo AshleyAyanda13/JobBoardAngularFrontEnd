@@ -2,15 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ApiserviceService } from '../../../services/apiservice.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ɵEmptyOutletComponent } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-editjob',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ɵEmptyOutletComponent],
   templateUrl: './editjob.component.html',
   styleUrl: './editjob.component.css'
 })
 export class EditjobComponent implements OnInit{
+   user$ = this.authService.user$;
 toggleDeleteModal(arg0: boolean) {
 this.showDeleteMessage=arg0;
 this.router.navigate(['postedjobs']);
@@ -26,7 +30,7 @@ this.showEditForm= false;
 
 dataholder: any;
 
-  constructor(private cvService: ApiserviceService, private fb: FormBuilder,private route: ActivatedRoute,private router:Router) { 
+  constructor(private cvService: ApiserviceService, private fb: FormBuilder,private route: ActivatedRoute,private router:Router, private authService:AuthService  ) { 
     this.editForm = this.fb.group({
       jobTitle: [''],
       jobDescription: [''],
@@ -79,6 +83,8 @@ DeleteJob() {
   this.cvService.DeleteVacancy(jobId).subscribe({
     next: (response) => {
      this.dataholder=response;
+Swal.fire('Success!', 'You have successfully deleted the vacancy .', 'success');
+
       window.location.reload();
     } ,
     error: (err) => {
@@ -95,9 +101,10 @@ editForm: any;
 EditVacancy() {
 this.cvService.EditPostedVacancy(this.dataholder.id,this.editForm.value).subscribe({
   next: (response) => {
-
+Swal.fire('Success!', 'You have successfully Edit the vacancy .', 'success');
     this.router.navigate(['postedjobs']);
-   console.log(response);
+    
+  
 }
  
  ,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,5 +14,14 @@ onLogin() {
 throw new Error('Method not implemented.');
 }
 loginForm: any;
+constructor(private authState: AuthService) 
+{
 
+
+
+
+ }
+
+
+ 
 }

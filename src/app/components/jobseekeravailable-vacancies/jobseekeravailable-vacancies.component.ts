@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiserviceService } from '../../services/apiservice.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-jobseekeravailable-vacancies',
   standalone: true,
@@ -14,8 +15,11 @@ ApplyForJob(_t4: any) {
 this.router.navigate(['vacancydetailsforapplication', _t4]);
 }
   vacancies:any;
-  
-  constructor(private apiService:ApiserviceService, private router:Router) { }
+   user$ = this.authService.user$;
+
+
+
+  constructor(private apiService:ApiserviceService, private router:Router,private authService:AuthService) { }
   
   
   ngOnInit(): void {

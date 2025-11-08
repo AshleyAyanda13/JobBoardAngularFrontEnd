@@ -40,9 +40,6 @@ export class LoginComponent {
 
       
        
-        localStorage.setItem('jwtToken', response.token);
-  
-        
 
     
        

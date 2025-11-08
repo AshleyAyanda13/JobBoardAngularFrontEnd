@@ -1,6 +1,6 @@
 
 
-<ng-component *ngIf="user$ | async as user">
+<ng-container *ngIf="user$ | async as user">
 <div class="modal-backdrop fade show" *ngIf="showDeleteMessage" style="z-index: 1040;"></div>
 
 
@@ -62,4 +62,4 @@
     </div>
   </div>
 </div>
-</ng-component>
+</ng-container>

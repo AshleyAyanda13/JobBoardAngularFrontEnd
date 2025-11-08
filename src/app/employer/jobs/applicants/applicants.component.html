@@ -1,4 +1,4 @@
-<ng-component *ngIf="user$ | async as user">
+<ng-container *ngIf="user$ | async as user">
 <div class="container mt-4" *ngIf="user.role === 'RECRUITER' || user.role === 'ADMIN'">
   <h4>Applicants for Job #{{ jobId }}</h4>
 
@@ -36,4 +36,4 @@
 
   <button class="btn btn-secondary mt-4" (click)="goBack()">← Back to Posted Jobs</button>
 </div>
-</ng-component>
+</ng-container>

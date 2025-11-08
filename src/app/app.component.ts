@@ -3,12 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { JobSearchBarComponent } from './components/job-search-bar/job-search-bar.component';
 import { AuthService } from './services/auth.service';
-import Swal from 'sweetalert2';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,JobSearchBarComponent],
+  imports: [RouterOutlet,CommonModule,JobSearchBarComponent,HeaderComponent,FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

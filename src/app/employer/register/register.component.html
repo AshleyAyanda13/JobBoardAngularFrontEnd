@@ -1,1 +1,62 @@
-<p>register works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header text-center">
+          <h2>Create your Pnet account</h2>
+          <p class="text-muted">FOR RECRUITERS - Personal Details</p>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="title" class="form-label">Title</label>
+                <select id="title" class="form-select" formControlName="title">
+                  <option value="">Select Title</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter your name">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="surname" class="form-label">Surname</label>
+                <input type="text" id="surname" class="form-control" formControlName="surname" placeholder="Enter your surname">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter your email">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="company" class="form-label">Company Name</label>
+                <input type="text" id="company" class="form-control" formControlName="company" placeholder="Enter company name">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" formControlName="phone" placeholder="Enter phone number">
+              </div>
+                <div class="col-md-6 mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password"   class="form-control password" formControlName="password" placeholder="Enter Password">
+              </div>  <div class="col-md-6 mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password"   class="form-control password" formControlName="repeatPassword" placeholder="Enter Confirm Password">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" >
+              Next step
+            </button>
+          </form>
+
+          <p class="mt-3 text-center">
+            Already registered?
+            <a routerLink="/recruiterlogin" class="btn btn-outline-secondary ms-2">Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

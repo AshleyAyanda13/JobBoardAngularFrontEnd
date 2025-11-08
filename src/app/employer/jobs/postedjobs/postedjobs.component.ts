@@ -53,6 +53,7 @@ postedJobs: any;
       next: (response) => {
         this.postedJobs = response;
         console.log(this.postedJobs);
+     
       }
 
       ,      error: (err) => {

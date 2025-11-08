@@ -6,62 +6,56 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiserviceService {
-  private apiUrl = 'http://localhost:8080/api/auth/authenticate';
-  private apiUrlRegistration = 'https://localhost:6061/api/Account/register';
-  private apiUrlInventory = 'http://localhost:8080/api/vacancy/allvacancies';
-  private apiUrlAddUserCV="http://localhost:8080/api/resumes/upload";
-   private apiUrlgetUsersCV="http://localhost:8080/api/resumes/user/";
-   private apiUrlDownloadUsersCV="http://localhost:8080/api/resumes/user/download";
+ private apiUrl = 'https://job-board-backend-latest-4786.onrender.com/api/auth/authenticate';
 
-    private apiGetLoggedInUserInformationDetails="http://localhost:8080/api/auth/me";
- 
-  
-  private apipostWorkExp="http://localhost:8080/api/profile/AddMyWorkExperience";
-    private apiEditWorkExp="http://localhost:8080/api/profile/updateUserWorkExperience/";
-  private apiDeleteData="http://localhost:8080/api/resumes/delete";
-  private apiGetExperience="http://localhost:8080/api/profile/myworkExperience";
- private apiGetEducation="http://localhost:8080/api/profile/myEducation";
- private apipostEducation="http://localhost:8080/api/profile/AddMyEducation";
-  private apiEditEducation="http://localhost:8080/api/profile/updateUserEducation/";
-    private apiDeleteEducation="http://localhost:8080/api/profile/DeleteUsersEducation/";
-        private apiDeleteExperience="http://localhost:8080/api/profile/DeleteUsersWorkExperience/";
-         private apiGetLoggedInUserInformation="http://localhost:8080/api/profile/LoggedInUser";
- private apiGetEmployersVacancies="http://localhost:8080/api/vacancy/myVacancies";
- private apiPostEmployersVacancy="http://localhost:8080/api/vacancy/UploadVacancy";
-private apiGetVacancyById="http://localhost:8080/api/vacancy/VacancyDetails/";
-private apiDeleteVacancy="http://localhost:8080/api/vacancy/DeleteAVacancy/";
+  private apiUrlRegistration = 'https://job-board-backend-latest-4786.onrender.com/api/auth/registerrecruiter';
+  private apiUrlJobSeekerRegistration = 'https://job-board-backend-latest-4786.onrender.com/api/auth/register';
+  private apiUrlInventory = 'https://job-board-backend-latest-4786.onrender.com/api/vacancy/allvacancies';
+  private apiUrlAddUserCV = 'https://job-board-backend-latest-4786.onrender.com/api/resumes/upload';
+  private apiUrlgetUsersCV = 'https://job-board-backend-latest-4786.onrender.com/api/resumes/user/';
+  private apiUrlDownloadUsersCV = 'https://job-board-backend-latest-4786.onrender.com/api/resumes/user/download';
 
-private apiUpdateJobDetails="http://localhost:8080/api/vacancy/UpdateVacancy/";
+  private apiGetLoggedInUserInformationDetails = 'https://job-board-backend-latest-4786.onrender.com/api/auth/me';
+  private apiUserLogout = 'https://job-board-backend-latest-4786.onrender.com/api/auth/logout';
 
-private apiGetAllVacancies="http://localhost:8080/api/vacancy/allPostedVacancies";
-private apiGetMyVacancyApplications="http://localhost:8080/api/application/application/";
-
-
-private apiPostApplicationForVacancy="http://localhost:8080/api/application/applytoJob/";
-
-
-private apiGetJobSeekersApplications="http://localhost:8080/api/application/user/";
-
-
-private apiGetApplicantsCV="http://localhost:8080/api/resumes/resume/";
-
-
-private apiGetApplicantsCVDetails="http://localhost:8080/api/resumes/resumedata/";
-
-private apiPostSearchQuery="http://localhost:8080/api/vacancy/SearchForVacancy";
-
-
+  private apipostWorkExp = 'https://job-board-backend-latest-4786.onrender.com/api/profile/AddMyWorkExperience';
+  private apiEditWorkExp = 'https://job-board-backend-latest-4786.onrender.com/api/profile/updateUserWorkExperience/';
+  private apiDeleteData = 'https://job-board-backend-latest-4786.onrender.com/api/resumes/delete';
+  private apiGetExperience = 'https://job-board-backend-latest-4786.onrender.com/api/profile/myworkExperience';
+  private apiGetEducation = 'https://job-board-backend-latest-4786.onrender.com/api/profile/myEducation';
+  private apipostEducation = 'https://job-board-backend-latest-4786.onrender.com/api/profile/AddMyEducation';
+  private apiEditEducation = 'https://job-board-backend-latest-4786.onrender.com/api/profile/updateUserEducation/';
+  private apiDeleteEducation = 'https://job-board-backend-latest-4786.onrender.com/api/profile/DeleteUsersEducation/';
+  private apiDeleteExperience = 'https://job-board-backend-latest-4786.onrender.com/api/profile/DeleteUsersWorkExperience/';
+  private apiGetLoggedInUserInformation = 'https://job-board-backend-latest-4786.onrender.com/api/profile/LoggedInUser';
+  private apiGetEmployersVacancies = 'https://job-board-backend-latest-4786.onrender.com/api/vacancy/myVacancies';
+  private apiPostEmployersVacancy = 'https://job-board-backend-latest-4786.onrender.com/api/vacancy/UploadVacancy';
+  private apiGetVacancyById = 'https://job-board-backend-latest-4786.onrender.com/api/vacancy/VacancyDetails/';
+  private apiDeleteVacancy = 'https://job-board-backend-latest-4786.onrender.com/api/vacancy/DeleteAVacancy/';
+  private apiUpdateJobDetails = 'https://job-board-backend-latest-4786.onrender.com/api/vacancy/UpdateVacancy/';
+  private apiGetAllVacancies = 'https://job-board-backend-latest-4786.onrender.com/api/vacancy/allPostedVacancies';
+  private apiGetMyVacancyApplications = 'https://job-board-backend-latest-4786.onrender.com/api/application/application/';
+  private apiPostApplicationForVacancy = 'https://job-board-backend-latest-4786.onrender.com/api/application/applytoJob/';
+  private apiGetJobSeekersApplications = 'https://job-board-backend-latest-4786.onrender.com/api/application/user/';
+  private apiGetApplicantsCV = 'https://job-board-backend-latest-4786.onrender.com/api/resumes/resume/';
+  private apiGetApplicantsCVDetails = 'https://job-board-backend-latest-4786.onrender.com/api/resumes/resumedata/';
+  private apiPostSearchQuery = 'https://job-board-backend-latest-4786.onrender.com/api/vacancy/SearchForVacancy';
 
   constructor(private http: HttpClient) { }
+
+
 
   postData(payload: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, payload,{ withCredentials: true }
 );
   }
-
+  postJobSekeerRegistrationData(payload: any): Observable<any> {
+    return this.http.post<any>(this.apiUrlJobSeekerRegistration, payload,{ withCredentials: true });
+  }
   
-  postRegistrationData(payload: any): Observable<any> {
-    return this.http.post<any>(this.apiUrlRegistration, payload);
+  
+  postRecruiterRegistrationData(payload: any): Observable<any> {
+    return this.http.post<any>(this.apiUrlRegistration, payload,{ withCredentials: true });
   }
    DownloadCv(): Observable<Blob> {
   return this.http.get('http://localhost:8080/api/resumes/download', {
@@ -74,7 +68,7 @@ private apiPostSearchQuery="http://localhost:8080/api/vacancy/SearchForVacancy";
     return this.http.get<any>(this.apiUrlInventory);
   }
   getEmployersVacancies(): Observable<any> {
-    return this.http.get<any>(this.apiGetEmployersVacancies);
+    return this.http.get<any>(this.apiGetEmployersVacancies,{ withCredentials: true });
   }
 
 
@@ -127,6 +121,9 @@ postEmployersVacancy(payload: FormData): Observable<any> {
   }
   postApplicationforvacancy(Id:number,payload: any): Observable<any> {
     return this.http.post<any>(this.apiPostApplicationForVacancy+Id, payload,{ withCredentials: true });
+  }
+  postUserLogout(): Observable<any> {
+    return this.http.post<any>(this.apiUserLogout,{ withCredentials: true });
   }
   
   postWorkExperience(payload: any): Observable<any> {

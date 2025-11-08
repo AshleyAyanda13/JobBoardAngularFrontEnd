@@ -1,0 +1,165 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="container mt-4 p-4 border rounded shadow">
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+    <button type="button" class="btn-close" aria-label="Close" (click)="successMessage = ''"></button>
+  </div>
+   <div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+    <h2 class="text-center text-primary fw-bold mb-4">Register to Employee System</h2>
+  <div class="mb-3">
+    <label class="form-label">Email:</label>
+    <input type="email" class="form-control" placeholder="Enter your Email" formControlName="email">
+    <div *ngIf="formSubmitted && registrationForm.get('email')?.invalid" class="text-danger">
+      <small *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required.</small>
+      <small *ngIf="registrationForm.get('email')?.errors?.['email']">Invalid email format.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Username:</label>
+    <input type="text" class="form-control" placeholder="Enter your Name" formControlName="username">
+     <div *ngIf="formSubmitted && registrationForm.get('username')?.invalid" class="text-danger mt-1">
+      <small *ngIf="registrationForm.get('username')?.errors?.['required']">Username is required.</small>
+      <small *ngIf="registrationForm.get('username')?.errors?.['minlength']">Must be at least 3 characters.</small>
+      <small *ngIf="registrationForm.get('username')?.errors?.['pattern']">Only letters allowed.</small>
+    </div>
+  </div>
+  <div class="mb-3">
+  <label class="form-label">Surname:</label>
+  <input type="text" class="form-control" placeholder="Enter your Surname"formControlName="surname">
+   <div *ngIf="formSubmitted && registrationForm.get('surname')?.invalid" class="text-danger mt-1">
+      <small *ngIf="registrationForm.get('surname')?.errors?.['required']">Surname is required.</small>
+      <small *ngIf="registrationForm.get('surname')?.errors?.['minlength']">Must be at least 2 characters.</small>
+      <small *ngIf="registrationForm.get('surname')?.errors?.['pattern']">Only letters allowed.</small>
+    </div>
+</div>
+
+  <div class="mb-3">
+    <label class="form-label">Address:</label>
+    <input type="text" class="form-control"  placeholder="Enter your Address"formControlName="Address">
+   <div *ngIf="formSubmitted && registrationForm.get('Address')?.invalid" class="text-danger mt-1">
+      <small *ngIf="registrationForm.get('Address')?.errors?.['required']">Address is required.</small>
+      <small *ngIf="registrationForm.get('Address')?.errors?.['minlength']">Too short.</small>
+      <small *ngIf="registrationForm.get('Address')?.errors?.['pattern']">Invalid characters used.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Date Of Birth:</label>
+    <input type="date" class="form-control" formControlName="DateOfBirth">
+    <div *ngIf="formSubmitted && registrationForm.get('DateOfBirth')?.invalid" class="text-danger">
+      <small *ngIf="registrationForm.get('DateOfBirth')?.errors?.['required']">Date of Birth is required.</small>
+
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">ID Number:</label>
+    <input type="text" class="form-control" placeholder="Enter your 13-digit ID number" formControlName="IDNumber">
+    <div *ngIf="formSubmitted && registrationForm.get('IDNumber')?.invalid" class="text-danger mt-1">
+      <small *ngIf="registrationForm.get('IDNumber')?.errors?.['required']">ID Number is required.</small>
+      <small *ngIf="registrationForm.get('IDNumber')?.errors?.['minlength']">Must be 13 digits.</small>
+      <small *ngIf="registrationForm.get('IDNumber')?.errors?.['maxlength']">Must be 13 digits.</small>
+      <small *ngIf="registrationForm.get('IDNumber')?.errors?.['pattern']">Only digits allowed.</small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone number:</label>
+    <input type="text" class="form-control" placeholder="Enter your number"formControlName="PhoneNumber">
+    <div *ngIf="formSubmitted && registrationForm.get('PhoneNumber')?.invalid" class="text-danger mt-1">
+      <small *ngIf="registrationForm.get('PhoneNumber')?.errors?.['required']">Phone number is required.</small>
+      <small *ngIf="registrationForm.get('PhoneNumber')?.errors?.['minlength']">At least 10 digits.</small>
+      <small *ngIf="registrationForm.get('PhoneNumber')?.errors?.['maxlength']">No more than 13 digits.</small>
+      <small *ngIf="registrationForm.get('PhoneNumber')?.errors?.['pattern']">Only digits allowed.</small>
+    </div>
+  </div>
+<div class="mb-3">
+  <label class="form-label">Gender:</label>
+  <select class="form-select" formControlName="Gender">
+    <option value="" disabled selected>Select gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+  <div *ngIf="formSubmitted && registrationForm.get('Gender')?.invalid" class="text-danger">
+    <small *ngIf="registrationForm.get('Gender')?.errors?.['required']">Gender is required.</small>
+  </div>
+</div>
+
+  <div class="mb-3">
+    <label class="form-label">Next Of Kin Name:</label>
+    <input type="text" class="form-control" placeholder="Enter your nex of kin name"formControlName="NextOfKinName">
+    <div *ngIf="formSubmitted && registrationForm.get('NextOfKinName')?.invalid" class="text-danger mt-1">
+      <small *ngIf="registrationForm.get('NextOfKinName')?.errors?.['required']">Name is required.</small>
+      <small *ngIf="registrationForm.get('NextOfKinName')?.errors?.['minlength']">At least 3 characters.</small>
+      <small *ngIf="registrationForm.get('NextOfKinName')?.errors?.['pattern']">Only letters allowed.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Next Of Kin Phone Number:</label>
+    <input type="text" class="form-control"placeholder="Enter your next of kin number" formControlName="NextOfKinPhoneNumber">
+     <div *ngIf="formSubmitted && registrationForm.get('NextOfKinPhoneNumber')?.invalid" class="text-danger mt-1">
+      <small *ngIf="registrationForm.get('NextOfKinPhoneNumber')?.errors?.['required']">Phone number is required.</small>
+      <small *ngIf="registrationForm.get('NextOfKinPhoneNumber')?.errors?.['minlength']">Too short.</small>
+      <small *ngIf="registrationForm.get('NextOfKinPhoneNumber')?.errors?.['pattern']">Only digits allowed.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Password:</label>
+    <input type="password" class="form-control" formControlName="password">
+    <div *ngIf="formSubmitted && registrationForm.get('password')?.invalid" class="text-danger">
+      <small *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required.</small>
+      <small *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+      <small *ngIf="registrationForm.get('password')?.errors?.['pattern']">Password must include uppercase, lowercase, number, and special character.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Confirm Password:</label>
+    <input type="password" class="form-control" formControlName="RepeatPassword">
+    <div *ngIf="formSubmitted && registrationForm.get('RepeatPassword')?.invalid" class="text-danger">
+      <small *ngIf="registrationForm.get('RepeatPassword')?.errors?.['required']">Confirm Password is required.</small>
+      <small *ngIf="registrationForm.get('RepeatPassword')?.errors?.['minlength']">Confirm Password must be at least 6 characters long.</small>
+    </div>
+  </div>
+
+  <div *ngIf="formSubmitted && registrationForm.errors?.['passwordsMismatch']" class="text-danger">
+    <small>Passwords do not match.</small>
+  </div>
+
+  <div class="errors" *ngIf="errors">
+    <div *ngIf="errors.Email" class="text-danger">{{ errors.Email }}</div>
+    <p *ngIf="errors.Password" class="text-danger">{{ errors.Password }}</p>
+    <p *ngIf="errors.Username" class="text-danger">{{ errors.Username }}</p>
+    <p *ngIf="errors.ConfirmPassword" class="text-danger">{{errors.ConfirmPassword}}</p>
+    <p *ngFor="let item of adderrors | keyvalue" class="text-danger">
+        {{ item.key }}: {{ item.value }}
+    </p>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Register</button>
+  <a routerLink="/loginn" class="btn btn-outline-secondary ms-2">Login</a>
+</form>
+
+
+
+
+  
+
+
+
+  
+
+ 
+
+
+ 
+
+
+ 
+
+ 
+
+  

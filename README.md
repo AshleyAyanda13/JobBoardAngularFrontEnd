@@ -1,27 +1,52 @@
-# JobBoardFrontEnd
+# Job Board Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+This is the frontend for a full-stack job board application built with Angular and Bootstrap. It connects to a Spring Boot backend and supports secure, role-based access for jobseekers and recruiters.
 
-## Development server
+##  Live Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Frontend: [https://jobboard-rust.vercel.app](https://jobboard-rust.vercel.app)  
+Backend: [https://jobboard-springboot.onrender.com](https://jobboard-springboot.onrender.com)
 
-## Code scaffolding
+##  Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular 15+**
+- **Bootstrap 5**
+- **TypeScript**
+- **JWT Cookie Authentication**
+- **Responsive UI with role-based navigation**
 
-## Build
+##  Roles Supported
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Jobseeker**: Register, log in, view jobs, manage profile
+- **Recruiter**: Register, log in, post jobs, manage listings
+- **Admin**: (optional) Reserved for future moderation features
 
-## Running unit tests
+##  Authentication Flow
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Secure JWT stored in `httpOnly` cookies
+- Cross-origin auth enabled via `withCredentials: true`
+- Logout clears cookie via backend `Set-Cookie` header
 
-## Running end-to-end tests
+##  Features
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Role-based routing and navigation
+- Form validation with Bootstrap styling
+- Context-aware error messages and loading states
+- Responsive layout for desktop and mobile
+- Seamless integration with backend APIs
 
-## Further help
+##  Demo Accounts
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Use these to explore without registering:
+
+```text
+Recruiter
+Email: Ayanda35@gmail.com
+Password: secure@124
+Administrator
+Email: Admin12@JobBoard.com
+Password : secure@123
+Jobseeker
+Email: jobseeker@demo.com
+Password: secure@125
+

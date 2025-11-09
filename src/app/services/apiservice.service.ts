@@ -14,7 +14,7 @@ export class ApiserviceService {
   private apiUrlInventory = `${this.baseUrl}/vacancy/allvacancies`;
   private apiUrlAddUserCV = `${this.baseUrl}/resumes/upload`;
   private apiUrlgetUsersCV = `${this.baseUrl}/resumes/user/`;
-  private apiUrlDownloadUsersCV = `${this.baseUrl}/resumes/user/download`;
+ private apiUrlDownloadUsersCV = `${this.baseUrl}/resumes/download`;
   private apiGetLoggedInUserInformationDetails = `${this.baseUrl}/auth/me`;
   private apiUserLogout = `${this.baseUrl}/auth/logout`;
   private apipostWorkExp = `${this.baseUrl}/profile/AddMyWorkExperience`;

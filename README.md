@@ -41,12 +41,12 @@ Use these to explore without registering:
 
 ```text
 Recruiter
-Email: Ayanda35@gmail.com
+Email: Ayanda36@gmail.com
 Password: secure@124
 Administrator
 Email: Admin12@JobBoard.com
 Password : secure@123
 Jobseeker
-Email: jobseeker@demo.com
-Password: secure@125
+Email: Ayanda20@gmail.com
+Password: secure@129
 

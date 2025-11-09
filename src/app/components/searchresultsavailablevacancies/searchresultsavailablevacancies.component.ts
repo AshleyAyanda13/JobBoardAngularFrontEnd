@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../../services/apiservice.service';
-import { ActivatedRoute, Router, ɵEmptyOutletComponent } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-searchresultsavailablevacancies',
   standalone: true,
-  imports: [CommonModule, ɵEmptyOutletComponent],
+  imports: [CommonModule],
   templateUrl: './searchresultsavailablevacancies.component.html',
   styleUrl: './searchresultsavailablevacancies.component.css'
 })
 export class SearchresultsavailablevacanciesComponent  implements OnInit {
    user$ = this.authService.user$;
+loading: boolean=true;
 ApplyForJob(arg0: any) {
 
 
@@ -33,7 +34,7 @@ ngOnInit(): void {
     this.apiService.postSearchQuery(searchPayload).subscribe({
       next: (response) => {
         this.vacancies = response;
-        console.log(this.vacancies);
+        this.loading=false;
       },
       error: (err) => {
         console.error('Error loading vacancies:', err);

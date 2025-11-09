@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsMod
 import { ApiserviceService } from '../../services/apiservice.service';
 import { Inject } from '@angular/core';
 import { RouterLink, Router } from '@angular/router'; // Import Router
+import { AuthService } from '../../services/auth.service';
  
 
 
@@ -16,36 +17,39 @@ import { RouterLink, Router } from '@angular/router'; // Import Router
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+ 
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required,]),
-    Password: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    email: new FormControl('', [Validators.required,]),
+    password: new FormControl('', [Validators.required, Validators.minLength(1)]),
   });
   error: string = "";
   holder: any;
-  constructor(@Inject(ApiserviceService) private apiService: ApiserviceService, private router: Router) {} // Inject Router
+formSubmitted: any;
+  constructor(private authState:AuthService, private apiService: ApiserviceService, private router: Router) {} 
  
 
   onLogin(): void {
-    if (this.loginForm.invalid) {
-      return;
-    }
+     this.formSubmitted=true;
     const payload = {
-      username: this.loginForm.value.username,
-      password: this.loginForm.value.Password
+      email: this.loginForm.value.email ,
+      password: this.loginForm.value.password
     };
- 
+ console.log(payload);
     this.apiService.postData(payload).subscribe({
       next: (response: { token: string; }) => {
         this.error = "";
 
-      
+        this.authState.fetchUser().subscribe(() => {
+      this.router.navigate(['/availablevacancies']);
+    });
        
 
     
        
       },
       error: () => {
-         
+         this.error = 'Invalid email or password';
+        console.error('Login failed');
       }
     });
 

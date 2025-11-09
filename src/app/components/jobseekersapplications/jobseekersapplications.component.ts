@@ -3,12 +3,11 @@ import { ApiserviceService } from '../../services/apiservice.service';
 
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
-import { ɵEmptyOutletComponent } from "@angular/router";
 
 @Component({
   selector: 'app-jobseekersapplications',
   standalone: true,
-  imports: [CommonModule, ɵEmptyOutletComponent],
+  imports: [CommonModule],
   templateUrl: './jobseekersapplications.component.html',
   styleUrl: './jobseekersapplications.component.css'
 })
@@ -16,6 +15,7 @@ export class JobseekersapplicationsComponent implements OnInit {
   userId: number = 0;
   data: any[] = [];
  user$ = this.authService.user$;
+loading: boolean=true;
   constructor(
     private apiService: ApiserviceService,
     private authService: AuthService
@@ -29,8 +29,7 @@ export class JobseekersapplicationsComponent implements OnInit {
         this.apiService.getJobSeekersApplications(this.userId).subscribe({
           next: (applications) => {
             this.data = applications;
-            console.log(this.data);
-
+ 
             this.data.forEach((application, index) => {
               this.apiService.getVacancyById(application.vacancyId).subscribe({
                 next: (vacancyDetails) => {
@@ -44,6 +43,8 @@ export class JobseekersapplicationsComponent implements OnInit {
                     datePosted: vacancyDetails.datePosted,
                     category: vacancyDetails.category
                   };
+                  this.loading = false;
+
                 },
                 error: (err) => {
                   console.error(`Error fetching vacancy ${application.vacancyId}:`, err);

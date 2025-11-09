@@ -7,13 +7,14 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-postedjobs',
   standalone: true,
-  imports: [CommonModule, ɵEmptyOutletComponent],
+  imports: [CommonModule],
   templateUrl: './postedjobs.component.html',
   styleUrl: './postedjobs.component.css'
 })
 export class PostedjobsComponent implements OnInit{
 
    user$ = this.authService.user$;
+loading: boolean=true ;
 viewApplicants(arg0: any) {
 
 this.router.navigate(['application', arg0]);
@@ -52,8 +53,8 @@ postedJobs: any;
     this.apiService.getEmployersVacancies().subscribe({ 
       next: (response) => {
         this.postedJobs = response;
-        console.log(this.postedJobs);
-     
+ 
+        this.loading=false;
       }
 
       ,      error: (err) => {

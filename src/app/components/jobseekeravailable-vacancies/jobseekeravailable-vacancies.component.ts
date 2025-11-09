@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './jobseekeravailable-vacancies.component.css'
 })
 export class JobseekeravailableVacanciesComponent implements OnInit{
+loading: boolean=true;
 ApplyForJob(_t4: any) {
 this.router.navigate(['vacancydetailsforapplication', _t4]);
 }
@@ -27,7 +28,7 @@ this.router.navigate(['vacancydetailsforapplication', _t4]);
 this.apiService.getAllVacancies().subscribe({
   next: (response) => {
    this.vacancies = response;
-   // console.log(this.vacancies);
+   this.loading=false;
   } ,
   error: (err) => {
     console.error('Error fetching vacancies data:', err);

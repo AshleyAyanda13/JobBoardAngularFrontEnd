@@ -14,22 +14,28 @@ import { ApiserviceService } from '../../services/apiservice.service';
 })
 export class LoginComponent {
    loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required,]),
+      email: new FormControl('', [Validators.required,Validators.email,Validators.minLength(2)]),
       Password: new FormControl('', [Validators.required, Validators.minLength(1)]),
     });
   error: any;
+loginError: any;
 onLogin() {
+    
+
   const payload = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.Password
     };
 this.ApiService.postData(payload).subscribe({
   next: () => {
-    this.authState.fetchUser().subscribe(() => {
+    this.authState.fetchUser().subscribe(() => {4
+      this.loginError = "";
       this.router.navigate(['/postedjobs']);
     });
   },
   error: (err) => {
+     this.loginError = 'Invalid email or password';
+
     console.error('Login failed:', err);
   }
 });

@@ -2,15 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../../../services/apiservice.service';
 import { CommonModule } from '@angular/common';
  
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { ɵEmptyOutletComponent } from "@angular/router";
-import { AuthService } from '../../../services/auth.service';
+ import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+ import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-jobseekerhistory',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ɵEmptyOutletComponent],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './jobseekerhistory.component.html',
   styleUrl: './jobseekerhistory.component.css'
 })
@@ -18,6 +16,7 @@ export class JobseekerhistoryComponent implements OnInit{
 
 
    user$ = this.authService.user$;
+loading: boolean=true;
 submitEditForm() {
 const payload = this.EditEducationForm.value;
 this.cvService.EditEducation(this.editEducationId,payload).subscribe({
@@ -182,7 +181,7 @@ GetloggedinUser() {
 this.cvService.getLoggedInUser().subscribe({
   next: (response) => {
   this.jobseekerdetails=response;
-    
+    console.log(this.jobseekerdetails);
   } ,
   error: (err) => {
     console.error('Error fetching experience data:', err);
@@ -259,7 +258,7 @@ this.cvService.getExperienceData().subscribe({
   next: (response) => {
    this.data=response;
     console.log(this.data);
-
+this.loading=false;
   } ,
   error: (err) => {
     console.error('Error fetching experience data:', err);

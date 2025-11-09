@@ -1,4 +1,7 @@
- <ng-component *ngIf="user$ | async as user">
+ 
+ <ng-container *ngIf="user$ | async as user">
+  
+
 <div class="container mt-4" *ngIf="user.role === 'ADMIN' || user.role === 'JOBSEEKER'" >
   <div class="card shadow-sm">
     <div class="card-body">
@@ -6,6 +9,9 @@
       <p class="mb-1 text-muted">Used by default</p>
 
       <div class="d-flex justify-content-between align-items-center mb-3">
+        <div *ngIf="loading" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
         <div *ngIf="data">
           <strong >{{ data.fileName }}</strong><br />
           <small class="text-muted">Added on {{ data.dateUploaded }}</small>
@@ -35,4 +41,4 @@
     </div>
   </div>
 </div>
-</ng-component>
+</ng-container>

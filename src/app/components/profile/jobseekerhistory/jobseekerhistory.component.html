@@ -1,15 +1,15 @@
 
-<ng-component *ngIf="user$ | async as user">
+<ng-container *ngIf="user$ | async as user">
 <div class="container py-5"*ngIf="user.role === 'ADMIN' || user.role === 'JOBSEEKER'" >
   <div class="card shadow">
     <div class="card-header bg-primary text-white">
-      <h3 class="mb-0">{{this.jobseekerdetails.name }} {{this.jobseekerdetails.surname}} {{this.jobseekerdetails.username}}</h3>
+      <h3 class="mb-0">{{this.jobseekerdetails.name }} {{this.jobseekerdetails.surname}} </h3>
       <small>Junior Developer | Java, .NET, Angular</small>
     </div>
 
     <div class="card-body">
 
-      
+   
       <form [formGroup]="workForm" *ngIf="showWorkExperienceForm" (ngSubmit)="submitForm()" class="p-4 bg-light border rounded">
         
           <div  class="mb-4 border-bottom pb-3">
@@ -81,6 +81,9 @@
       <h5 class="mt-5 mb-3">🎓 Work Experience</h5>
       <button class="btn btn-success mb-2" (click)="addWorkExperience()">Add +</button>
       <ul class="list-group">
+           <div *ngIf="loading" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
         <li class="list-group-item" *ngFor="let item of data">
           <strong>{{ item.company }}</strong><br>
           Position: {{ item.position }}<br>
@@ -188,6 +191,9 @@
       <h5 class="mt-5 mb-3">🎓 Education</h5>
       <button class="btn btn-success mb-2" (click)="addEducation()">Add +</button>
       <ul class="list-group">
+          <div *ngIf="loading" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
         <li class="list-group-item" *ngFor="let item of educationdata">
           <strong>{{ item.degree }}</strong><br>
           Institution: {{ item.institution }}<br>
@@ -200,4 +206,4 @@
     </div>
   </div>
 </div>
-</ng-component>
+</ng-container>

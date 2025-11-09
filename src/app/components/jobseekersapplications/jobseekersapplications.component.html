@@ -1,5 +1,9 @@
- <ng-component *ngIf="user$ | async as user">
+ <ng-container *ngIf="user$ | async as user">
+  
  <h5 class="mt-5 mb-3" *ngIf="user.role === 'ADMIN' || user.role === 'JOBSEEKER'" >Vacancies that you have applied for</h5>
+ <div *ngIf="loading" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
        <ul class="list-group">
         <li class="list-group-item" *ngFor="let item of data">
           
@@ -14,7 +18,7 @@
 
         </li>
       </ul>
-    </ng-component>
+    </ng-container>
       
 
 

@@ -1,0 +1,27 @@
+<div class="container mt-4" *ngIf="!loading && user">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Recruiter Profile</h5>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-6"><strong>Username:</strong> {{ user.username }}</div>
+        <div class="col-md-6"><strong>Role:</strong> {{ user.role }}</div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6"><strong>Title:</strong> {{ user.title }}</div>
+        <div class="col-md-6"><strong>Name:</strong> {{ user.name }} {{ user.surname }}</div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6"><strong>Email:</strong> {{ user.email }}</div>
+        <div class="col-md-6"><strong>Company:</strong> {{ user.company }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center mt-5" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

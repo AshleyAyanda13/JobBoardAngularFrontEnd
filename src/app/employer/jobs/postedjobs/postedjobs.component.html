@@ -2,6 +2,9 @@
  <h5 class="mt-5 mb-3" *ngIf="user.role === 'ADMIN' || user.role === 'RECRUITER'">My Posted vacancies</h5>
       <button class="btn btn-success mb-2" (click)="onAddJobClick()">Add +</button>
       <ul class="list-group">
+          <div *ngIf="loading" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
         <li class="list-group-item" *ngFor="let item of postedJobs">
           
         Job Title: {{ item.jobTitle }}<br>

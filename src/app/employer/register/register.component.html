@@ -3,12 +3,13 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header text-center">
-          <h2>Create your Pnet account</h2>
+          <h2>Create your Jobboard account</h2>
           <p class="text-muted">FOR RECRUITERS - Personal Details</p>
         </div>
         <div class="card-body">
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="row">
+             
               <div class="col-md-6 mb-3">
                 <label for="title" class="form-label">Title</label>
                 <select id="title" class="form-select" formControlName="title">
@@ -16,38 +17,76 @@
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
                 </select>
+                <div *ngIf="formSubmitted && registerForm.get('title')?.invalid" class="text-danger">
+                  <small>Title is required.</small>
+                </div>
               </div>
+
+             
               <div class="col-md-6 mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter your name">
+                <div *ngIf="formSubmitted && registerForm.get('name')?.invalid" class="text-danger">
+                  <small>Name is required.</small>
+                </div>
               </div>
-              <div class="col-md-6 mb-3">
+
+               <div class="col-md-6 mb-3">
                 <label for="surname" class="form-label">Surname</label>
                 <input type="text" id="surname" class="form-control" formControlName="surname" placeholder="Enter your surname">
+                <div *ngIf="formSubmitted && registerForm.get('surname')?.invalid" class="text-danger">
+                  <small>Surname is required.</small>
+                </div>
               </div>
-              <div class="col-md-6 mb-3">
+
+               <div class="col-md-6 mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter your email">
+                <div *ngIf="formSubmitted && registerForm.get('email')?.invalid" class="text-danger">
+                  <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
+                  <small *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</small>
+                </div>
               </div>
-              <div class="col-md-6 mb-3">
+
+               <div class="col-md-6 mb-3">
                 <label for="company" class="form-label">Company Name</label>
                 <input type="text" id="company" class="form-control" formControlName="company" placeholder="Enter company name">
+                <div *ngIf="formSubmitted && registerForm.get('company')?.invalid" class="text-danger">
+                  <small>Company name is required.</small>
+                </div>
               </div>
-              <div class="col-md-6 mb-3">
+
+               <div class="col-md-6 mb-3">
                 <label for="phone" class="form-label">Phone Number</label>
                 <input type="tel" id="phone" class="form-control" formControlName="phone" placeholder="Enter phone number">
+                <div *ngIf="formSubmitted && registerForm.get('phone')?.invalid" class="text-danger">
+                  <small *ngIf="registerForm.get('phone')?.errors?.['required']">Phone number is required.</small>
+                  <small *ngIf="registerForm.get('phone')?.errors?.['pattern']">Enter a valid 10-digit phone number.</small>
+                </div>
               </div>
-                <div class="col-md-6 mb-3">
+
+               <div class="col-md-6 mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password"   class="form-control password" formControlName="password" placeholder="Enter Password">
-              </div>  <div class="col-md-6 mb-3">
-                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password"   class="form-control password" formControlName="repeatPassword" placeholder="Enter Confirm Password">
+                <input type="password" class="form-control" formControlName="password" placeholder="Enter Password">
+                <div *ngIf="formSubmitted && registerForm.get('password')?.invalid" class="text-danger">
+                  <small>Password must be at least 6 characters.</small>
+                </div>
+              </div>
+
+               <div class="col-md-6 mb-3">
+                <label for="repeatPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" formControlName="repeatPassword" placeholder="Enter Confirm Password">
+                <div *ngIf="formSubmitted && registerForm.get('repeatPassword')?.invalid" class="text-danger">
+                  <small>Password must be at least 6 characters.</small>
+                </div>
+                <div *ngIf="formSubmitted && registerForm.hasError('passwordsMismatch')" class="text-danger">
+                  <small>Passwords do not match.</small>
+                </div>
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100" >
-              Next step
+            <button type="submit" class="btn btn-secondary w-100">
+              Register
             </button>
           </form>
 

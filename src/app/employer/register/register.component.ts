@@ -23,7 +23,7 @@ export class RegisterComponent {
       company: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      repeatPassword: ['', Validators.required],
+      repeatPassword: ['', Validators.required,Validators.minLength(6)],
       username: "Recruiter"+Math.floor(Math.random()*10000)
     });
   }
@@ -40,6 +40,7 @@ adderrors: any;
   }
 
  onSubmit() {
+  this.formSubmitted=true;
     if (true) {
 
       this.formSubmitted = true;

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiserviceService } from '../../../services/apiservice.service';
-import { ActivatedRoute, Route, Router, ɵEmptyOutletComponent } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-applicants',
   standalone: true,
-  imports: [CommonModule, ɵEmptyOutletComponent],
+  imports: [CommonModule],
   templateUrl: './applicants.component.html',
   styleUrl: './applicants.component.css'
 })
 export class ApplicantsComponent implements OnInit{
 
  user$ = this.authService.user$;
+loading: boolean=true ;
 
 
 DownloadCv(resumeId: any) {
@@ -68,6 +69,7 @@ constructor(private apiservice:ApiserviceService,private route: ActivatedRoute, 
               applicant.resumeFileName = cvDetails.fileName; 
 this.applicantCvDetails=cvDetails;
   applicant.fileType = cvDetails.fileType; 
+this.loading=false;
              },
             error: (err) => {
               console.error(`Error fetching CV for applicant ${applicant.id}:`, err);

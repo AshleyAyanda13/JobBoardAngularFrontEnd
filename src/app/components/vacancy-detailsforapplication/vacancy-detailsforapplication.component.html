@@ -1,4 +1,4 @@
-<ng-component *ngIf="user$ | async as user">
+<ng-container *ngIf="user$ | async as user">
 <div class="container mt-5" *ngIf="vacancyDetails || user.role === 'ADMIN' || user.role === 'JOBSEEKER'">
   <div class="card shadow-sm">
     <div class="card-body">
@@ -35,4 +35,4 @@
   <div class="alert alert-info">Loading vacancy details...</div>
 </div>
 
-</ng-component>
+</ng-container>

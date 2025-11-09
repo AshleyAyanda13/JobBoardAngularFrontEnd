@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { PostjobPageComponent } from './pages/employer/postjob-page/postjob-page.component';
 import { PostedJobsPageComponent } from './pages/employer/posted-jobs-page/posted-jobs-page.component';
@@ -14,27 +13,35 @@ import { SearchresultsavailablevacanciesPageComponent } from './pages/searchresu
 import { EmployerLoginPageComponent } from './pages/employer/employer-login-page/employer-login-page.component';
 import { roleGuard } from './auth/role.guard';
 import { RegisterPageComponent } from './pages/employer/register-page/register-page.component';
+import { JobSeekerRegistrationPageComponent } from './pages/job-seeker-registration-page/job-seeker-registration-page.component';
+import { RecruiterProfilePageComponent } from './pages/employer/recruiter-profile-page/recruiter-profile-page.component';
+import { UnauthorisedPageComponent } from './pages/unauthorised-page/unauthorised-page.component';
  
 
 export const routes: Routes = [
 
     { path: '', component: LoginPageComponent }, 
   { path: 'login', component: LoginPageComponent },
-  { path: 'home', component: HomePageComponent },
-  { path: 'profile', component: ProfilePageComponent },
-   { path: 'postjob', component: PostjobPageComponent },
-      { path: 'postedjobs', component: PostedJobsPageComponent },   
-  { path: 'editjob/:id', component: EditjobComponent },
-  { path: 'application/:id', component: ApplicantsComponent },
-{ path: 'availablevacancies', component: JobSeekerAvailableVacanciesPageComponent },
-  { path: 'vacancydetailsforapplication/:id', component: VacancyDetailsforapplicationComponent },
-   { path: 'jobseekersapplications', component: ApplicationsPageComponent },
 
-   { path: 'jobseekeravailablesearchedvacancies', component: SearchresultsavailablevacanciesComponent },
+  { path: 'profile', component: ProfilePageComponent, canActivate: [roleGuard],data: { roles: ['JOBSEEKER','RECRUITER'] } },
+   { path: 'postjob', component: PostjobPageComponent, canActivate: [roleGuard],data: { roles: ['RECRUITER'] } },
+      { path: 'postedjobs', component: PostedJobsPageComponent, canActivate: [roleGuard],data: { roles: ['RECRUITER'] } },   
+  { path: 'editjob/:id', component: EditjobComponent, canActivate: [roleGuard],data: { roles: ['RECRUITER'] } },
+  { path: 'application/:id', component: ApplicantsComponent, canActivate: [roleGuard],data: { roles: ['RECRUITER'] } },
+{ path: 'availablevacancies', component: JobSeekerAvailableVacanciesPageComponent, canActivate: [roleGuard],data: { roles: ['JOBSEEKER'] } },
+  { path: 'vacancydetailsforapplication/:id', component: VacancyDetailsforapplicationComponent, canActivate: [roleGuard],data: { roles: ['JOBSEEKER'] } },
+   { path: 'jobseekersapplications', component: ApplicationsPageComponent, canActivate: [roleGuard],data: { roles: ['JOBSEEKER'] } },
+
+   { path: 'jobseekeravailablesearchedvacancies', component: SearchresultsavailablevacanciesComponent, canActivate: [roleGuard],data: { roles: ['JOBSEEKER'] } },
+   { path: 'unauthorised', component: UnauthorisedPageComponent },
    
-{ path: 'searchresults', component: SearchresultsavailablevacanciesPageComponent, canActivate: [roleGuard],data: { expectedRole: 'JOBSEEKER' } ,
+   { path: 'jobseekerregistration', component: JobSeekerRegistrationPageComponent },
+      { path: 'recruiterprofile', component: RecruiterProfilePageComponent, canActivate: [roleGuard],data: { roles: ['RECRUITER'] } },
+   
+{ path: 'searchresults', component: SearchresultsavailablevacanciesPageComponent, canActivate: [roleGuard],data: { roles: ['JOBSEEKER'] }
+ ,
  },
    { path: 'recruiterlogin', component: EmployerLoginPageComponent },
       { path: 'recruiterregister', component: RegisterPageComponent },
-  { path: '**', redirectTo: '' } 
+  { path: '**', redirectTo: 'unauthorised' } 
 ];

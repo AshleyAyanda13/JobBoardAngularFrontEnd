@@ -1,8 +1,10 @@
- <ng-component *ngIf="user$ | async as user">
-     
+ <ng-container *ngIf="user$ | async as user">
+   
      <div class="container mt-4" *ngIf="user.role === 'ADMIN' || user.role === 'JOBSEEKER'">
     <h3 class="mb-4">Available Vacancies</h3>
-
+    <div *ngIf="loading" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
    
     <div class="col" *ngFor="let vacancy of vacancies">
@@ -37,4 +39,4 @@
 </div>
 
 
-</ng-component>
+ </ng-container>

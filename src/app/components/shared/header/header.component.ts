@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 import { ApiserviceService } from '../../../services/apiservice.service';
 
+import { RouterLink, Router } from '@angular/router'; // Import Router
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
    user$ = this.authService.user$;
 ngOnInit(): void {
-  throw new Error('Method not implemented.');
-}
+ }
 logout() {
 
 
@@ -25,7 +25,8 @@ logout() {
       console.log('Logout successful:', response);
  this.authService.clearUser();
 
-      window.location.href = '/login'; // Redirect to login page
+  
+      this.router.navigate(['/login']); // Use Angular router
     },
     error: (err) => {
       console.error('Error during logout:', err);
@@ -34,7 +35,7 @@ logout() {
 }
 
 
-  constructor(private authService: AuthService, private apiService:ApiserviceService) {}
+  constructor(private authService: AuthService, private apiService:ApiserviceService,private router:Router) {}
   
 
 

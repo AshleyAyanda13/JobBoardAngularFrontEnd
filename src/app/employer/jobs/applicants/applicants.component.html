@@ -1,7 +1,10 @@
 <ng-container *ngIf="user$ | async as user">
 <div class="container mt-4" *ngIf="user.role === 'RECRUITER' || user.role === 'ADMIN'">
+    
   <h4>Applicants for Job #{{ jobId }}</h4>
-
+  <div *ngIf="loading" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
   <div *ngIf="applicants.length > 0; else noApplicants">
       
     <div *ngFor="let applicant of applicants"  class="card mb-3">

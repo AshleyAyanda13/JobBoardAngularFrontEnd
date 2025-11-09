@@ -10,13 +10,14 @@ import { ɵEmptyOutletComponent } from "@angular/router";
 @Component({
   selector: 'app-cv-section',
   standalone: true,
-  imports: [CommonModule, ɵEmptyOutletComponent],
+  imports: [CommonModule],
   templateUrl: './cv-section.component.html',
   styleUrl: './cv-section.component.css'
 })
 export class CvSectionComponent implements OnInit {
  user$ = this.authService.user$;
   userId :number=0
+loading: boolean=true;
 DeleteCV() {
 
 const confirmed = window.confirm('Are you sure you want to delete your CV?');
@@ -35,7 +36,7 @@ if (confirmed) {
        this.data=response;
 
       
-       
+       this.loading=false;
         
 
     
@@ -78,6 +79,7 @@ getUserCVData() {
         next: (response) => {
           console.log("User Response:", response);
           this.data = response;
+            this.loading=false;
         },
         error: (err) => {
           console.error('Failed to load CV:', err);
@@ -126,11 +128,7 @@ getUserCVData() {
     return;
   }
 
-  const token = localStorage.getItem('jwtToken');
-  if (!token) {
-    alert('No token found. Please log in.');
-    return;
-  }
+  
 
   
   const now = Math.floor(Date.now() / 1000);
